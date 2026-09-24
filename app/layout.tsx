@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 
 // Configure Roboto as the primary font
 const roboto = Roboto({
@@ -25,7 +27,9 @@ export default function RootLayout({
       <body
         className={`${roboto.className} antialiased bg-[#050505] text-white`}
       >
+        <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

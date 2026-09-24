@@ -3,17 +3,57 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
-const navLinks = [
-  { name: "Products", href: "#products" },
-  { name: "About Us", href: "#about" },
-  { name: "FAQs", href: "#faqs" },
-  { name: "Contact us", href: "#contact" },
+interface NavItem {
+  name: string;
+  isSection: boolean;
+  target: string;
+}
+
+const navLinks: NavItem[] = [
+  { name: "Products", isSection: true, target: "products" },
+  { name: "About Us", isSection: false, target: "/about" },
+  { name: "FAQs", isSection: true, target: "faqs" },
+  { name: "Contact us", isSection: false, target: "/contact" },
 ];
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    item: NavItem,
+  ) => {
+    setMobileMenuOpen(false);
+
+    // Handles Section Scrolling (Products & FAQs)
+    if (item.isSection) {
+      e.preventDefault();
+
+      if (pathname === "/") {
+        // If already on homepage, scroll smoothly and keep URL clean
+        const element = document.getElementById(item.target);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+          window.history.pushState(null, "", "/");
+        }
+      } else {
+        // If on another page (/about, /contact), navigate home first then scroll
+        router.push("/");
+        setTimeout(() => {
+          const element = document.getElementById(item.target);
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+            window.history.pushState(null, "", "/");
+          }
+        }, 300);
+      }
+    }
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 pt-6 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
@@ -22,7 +62,6 @@ export default function Navbar() {
         {/* Left: Brand Logo / Title */}
         <Link href="/" className="flex items-center gap-2.5 group">
           <div className="relative w-6 h-6 flex items-center justify-center mb-2">
-            {/* Logo image loaded from public/logo.svg */}
             <Image
               src="/logo.svg"
               alt="Boiling Proxies Logo"
@@ -31,15 +70,14 @@ export default function Navbar() {
               className="object-contain"
               priority
               onError={(e) => {
-                // Fallback icon placeholder if /logo.svg is missing
                 const target = e.target as HTMLElement;
                 target.style.display = "none";
               }}
             />
           </div>
-          <span className="text-white font-regular text-12px tracking-wide group-hover:text-gray-200 transition-colors">
+          <span className="text-white font-regular text-[12px] tracking-wide group-hover:text-gray-200 transition-colors">
             Boiling{" "}
-            <span className="text-[#ff2200] font-regular text-12px">
+            <span className="text-[#ff2200] font-regular text-[12px]">
               Proxies
             </span>
           </span>
@@ -50,7 +88,8 @@ export default function Navbar() {
           {navLinks.map((link) => (
             <Link
               key={link.name}
-              href={link.href}
+              href={link.isSection ? `/#${link.target}` : link.target}
+              onClick={(e) => handleNavClick(e, link)}
               className="text-gray-300 text-sm font-medium hover:text-white transition-colors duration-200"
             >
               {link.name}
@@ -58,7 +97,7 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Right: Login Button (Hover White Fill with Red Text) */}
+        {/* Right: Login Button */}
         <div className="hidden md:flex items-center">
           <Link
             href="/login"
@@ -92,8 +131,8 @@ export default function Navbar() {
             {navLinks.map((link) => (
               <Link
                 key={link.name}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
+                href={link.isSection ? `/#${link.target}` : link.target}
+                onClick={(e) => handleNavClick(e, link)}
                 className="text-gray-300 text-sm font-medium py-1.5 hover:text-white transition-colors"
               >
                 {link.name}
@@ -103,7 +142,7 @@ export default function Navbar() {
 
           <div className="pt-3 border-t border-white/10">
             <Link
-              href="/login"
+              href="https://dashboard.boilingproxies.com/login"
               onClick={() => setMobileMenuOpen(false)}
               className="block w-full text-center py-2.5 text-sm font-medium text-white border border-white/20 rounded-full hover:bg-white hover:text-[#ff2200] transition-all duration-300"
             >

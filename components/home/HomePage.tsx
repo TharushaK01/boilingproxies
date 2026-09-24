@@ -6,6 +6,7 @@ import Link from "next/link";
 import ScrollReveal from "@/components/ScrollReveal";
 import { motion } from "framer-motion";
 import { Check, ChevronLeft, ChevronRight } from "lucide-react";
+import { Plus, Minus } from "lucide-react";
 
 const navLinks = [
   { name: "Products", href: "/products" },
@@ -92,17 +93,6 @@ const pricingPlans = {
   ],
 };
 
-const faqs = [
-  {
-    question: "What are Datacenter, ISP, and Residential Proxies?",
-    answer:
-      "Residential proxies use real home IPs. Datacenter proxies offer high speeds. ISP proxies combine speed with high trust.",
-  },
-  {
-    question: "Can I accept payments automatically?",
-    answer: "Yes, proxy orders are delivered instantly upon payment.",
-  },
-];
 interface Feature {
   iconSrc: string;
   title: string;
@@ -154,10 +144,11 @@ interface DashboardSectionProps {
 
 interface Plan {
   id: string;
-  price: string;
-  unit: string;
+  price?: string;
+  unit?: string;
   title: string;
   description: string;
+  subDescription?: string;
   features: string[];
 }
 
@@ -224,11 +215,11 @@ const residentialPlans: Plan[] = [
   },
   {
     id: "ultra",
-    price: "€8.50",
+    price: "€4.00",
     unit: "/GB",
-    title: "Boiling Ultra",
+    title: "Boiling Go",
     description:
-      "Ultra-fast tier residential proxies with dedicated routing for high-concurrency tasks and zero throttling.",
+      "Top-tier proxies at the best price, perfect for sneakers, tickets, social media, and more. Data never expires, fast speeds, and low data usage.",
     features: [
       "All limited links",
       "Own analytics platform",
@@ -239,11 +230,11 @@ const residentialPlans: Plan[] = [
   },
   {
     id: "max",
-    price: "€10.00",
-    unit: "/GB",
-    title: "Boiling Max",
+    title: "Boiling B2B Enterprise Plan",
     description:
-      "Enterprise grade residential pool with zero-block guarantees, maximum uptime, and prioritized bandwidth.",
+      "Get a proxy plan designed just for you. We offer flexible options and dedicated support to match your specific needs.",
+    subDescription:
+      "Click on the 'Contact' button below to reach out to us and create a plan that fits perfectly!",
     features: [
       "All limited links",
       "Own analytics platform",
@@ -290,6 +281,129 @@ const datacenterPlans: Plan[] = [
   },
 ];
 
+interface Review {
+  id: string;
+  title: string;
+  starsSrc: string;
+  date: string;
+  comment: string;
+  author: string;
+}
+
+const reviews: Review[] = [
+  {
+    id: "1",
+    title: "Quality and Support as best",
+    starsSrc: "/stars-5.svg",
+    date: "7 days ago",
+    comment:
+      "Absolute performance for individual needs. Cant complain, even if something is wrong, the support is as fast as the product they sell.",
+    author: "Don",
+  },
+  {
+    id: "2",
+    title: "Very nice proxies",
+    starsSrc: "/stars-5.svg",
+    date: "6 days ago",
+    comment:
+      "Very nice proxies. I'm using DE isps, and they work very nicely on every site I need. They are fast and unbanned. Support is very friendly and useful...",
+    author: "--- -",
+  },
+  {
+    id: "3",
+    title: "Ngl boiling first of all the best...",
+    starsSrc: "/stars-5.svg",
+    date: "Sep 21, 2024",
+    comment:
+      "Ngl boiling first of all the best proxie comp and second of all owners are mad chill, just cop ur proxies there.",
+    author: "Deine Mom",
+  },
+  {
+    id: "4",
+    title: "The best proxy provider there is",
+    starsSrc: "/stars-5.svg",
+    date: "Sep 21, 2024",
+    comment:
+      "The best proxy provider there is where customer satisfaction and quality product are number one priority. I could recommend...",
+    author: "Niek",
+  },
+  {
+    id: "5",
+    title: "Best Proxies on the market",
+    starsSrc: "/stars-5.svg",
+    date: "Sep 21, 2024",
+    comment:
+      "I'm using them since 1 year approximatively and never disappointed. Always on top with customers too. I really recommend it !",
+    author: "Louis",
+  },
+  {
+    id: "6",
+    title: "Experience with Boiling proxies was..",
+    starsSrc: "/stars-5.svg",
+    date: "Sep 21, 2024",
+    comment:
+      "Experience with Boiling proxies was simply amazing, tried different types, between DC, ISPs and Resis. They cover litterally every....",
+    author: "Gaetano",
+  },
+];
+
+interface FAQItem {
+  id: string;
+  question: string;
+  answer?: string;
+  answerPoints?: string[];
+}
+
+const faqData: FAQItem[] = [
+  {
+    id: "1",
+    question: "What are Datacenter, ISP and Residential Proxies?",
+    answerPoints: [
+      "Datacenter Proxies: Provided by data centers, these proxies are fast and cost-effective but can be easily identified as proxies by websites.",
+      "ISP Proxies: These proxies come from Internet Service Providers and offer a balance of speed and reliability, with reduced likelihood of being flagged as proxies.",
+      "Residential Proxies: These use IP addresses from real homes, providing high anonymity and reducing the risk of being blocked, making them ideal for tasks requiring genuine IP addresses.",
+    ],
+  },
+  {
+    id: "2",
+    question: "Can i keep the same proxies every month?",
+    answer:
+      "Yes! For Boiling Datacenter & ISP Proxies you can keep the same proxies every month by renewing them through your own dashboard! Our Boiling Residential Proxies have no expiry and the same proxies can be used until your data runs out!",
+  },
+  {
+    id: "3",
+    question: "What's the minimum amount to buy ISP?",
+    answer:
+      "The minimum for Boiling Residential Proxies is 1 GB. For Boiling Datacenter Proxies, it’s 25, and for ISP Proxies, it’s 10.",
+  },
+  {
+    id: "4",
+    question:
+      "How do Boiling Proxies ensure the security and anonymity of my data?",
+    answer:
+      "We use advanced encryption and privacy measures to protect your data and ensure anonymity.",
+  },
+  {
+    id: "5",
+    question: "Can I use your proxies for web scraping and social media?",
+    answer:
+      "Yes, our Residential proxies are designed for web scraping and social media, providing the reliability and speed needed for large-scale data collection.",
+  },
+  {
+    id: "6",
+    question: "How do I set up and use my proxies?",
+    answer:
+      "We provide detailed setup instructions and support in our discord server to help you configure and use your proxies effectively.",
+  },
+  {
+    id: "7",
+    question:
+      "What kind of support can I expect if I encounter issues with my proxies?",
+    answer:
+      "Our dedicated support team is 24/7 available to assist with any issues or questions you may have, ensuring a smooth experience.",
+  },
+];
+
 export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [pricingTab, setPricingTab] = useState<
@@ -298,6 +412,7 @@ export default function HomePage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const duplicatedLogos = [...brandLogos, ...brandLogos];
   const imageSrc = "/dashboard-preview.svg";
+
   const [activeTab, setActiveTab] = useState<
     "residential" | "isp" | "datacenter"
   >("residential");
@@ -345,6 +460,14 @@ export default function HomePage() {
   };
 
   const currentPlans = getActivePlans();
+
+  const marqueeReviews = [...reviews, ...reviews];
+
+  const [openId, setOpenId] = useState<string | null>(null);
+
+  const toggleFAQ = (id: string) => {
+    setOpenId((prev) => (prev === id ? null : id));
+  };
   return (
     <div className="bg-[#050505] min-h-screen text-white font-sans relative overflow-hidden">
       {/* HERO SECTION */}
@@ -409,7 +532,7 @@ export default function HomePage() {
             <ScrollReveal yOffset={40} delay={0.5}>
               <div className="mt-8 sm:mt-10">
                 <Link
-                  href="#pricing"
+                  href="https://dashboard.boilingproxies.com/login"
                   className="group inline-flex items-center justify-center px-8 sm:px-10 py-3 text-xs sm:text-sm font-medium bg-transparent border border-white/20 rounded-full hover:bg-white hover:border-white transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]"
                 >
                   <span className="bg-gradient-to-r from-white to-white/33 bg-clip-text text-transparent group-hover:from-[#ff2200] group-hover:to-[#ff2200] group-hover:text-[#ff2200] transition-colors duration-300">
@@ -472,7 +595,7 @@ export default function HomePage() {
           {/* Section Heading */}
           <ScrollReveal yOffset={40} delay={0.6}>
             <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-              <h2 className="text-3xl sm:text-32px md:text-5xl font-semibold tracking-tight mb-6 bg-gradient-to-r from-[#ff99a8] via-[#ff5b60] to-[#ff2200] bg-clip-text text-transparent">
+              <h2 className="text-3xl sm:text-[32px] md:text-5xl font-semibold tracking-tight mb-6 bg-gradient-to-r from-[#ff99a8] via-[#ff5b60] to-[#ff2200] bg-clip-text text-transparent">
                 Why Boiling Proxies is Different
               </h2>
               <p className="text-xs sm:text-16px text-[#ffffff] font-regular leading-relaxed">
@@ -616,16 +739,17 @@ export default function HomePage() {
               ))}
             </div>
           </ScrollReveal>
-
-          {/* Bottom CTA Button */}
-          <div className="mt-16 sm:mt-20 text-center">
-            <Link
-              href="#pricing"
-              className="inline-flex items-center justify-center px-8 sm:px-10 py-3.5 text-xs sm:text-sm font-semibold text-white bg-[#ff2200] rounded-full hover:bg-[#e01e00] transition-all duration-300 shadow-[0_0_25px_rgba(255,34,0,0.5)] hover:shadow-[0_0_35px_rgba(255,34,0,0.7)]"
-            >
-              Purchase now
-            </Link>
-          </div>
+          <ScrollReveal yOffset={40} delay={0.7}>
+            {/* Bottom CTA Button */}
+            <div className="mt-16 sm:mt-20 text-center">
+              <Link
+                href="https://dashboard.boilingproxies.com/login"
+                className="inline-flex items-center justify-center px-8 sm:px-10 py-3.5 text-xs sm:text-sm font-semibold text-white bg-[#ff2200] rounded-full hover:bg-[#e01e00] transition-all duration-300 shadow-[0_0_25px_rgba(255,34,0,0.5)] hover:shadow-[0_0_35px_rgba(255,34,0,0.7)]"
+              >
+                Purchase now
+              </Link>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -700,190 +824,456 @@ export default function HomePage() {
       </section>
 
       {/* PRICING SECTION */}
-      <section className="relative py-20 lg:py-28 px-4 sm:px-6 lg:px-8 bg-[#050505] text-white overflow-hidden">
+      <section
+        id="products"
+        className="relative py-20 lg:py-28 px-4 sm:px-6 lg:px-8 bg-[#050505] text-white overflow-hidden scroll-mt-20"
+      >
         {/* Central Title Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-6 bg-gradient-to-r from-[#ff99a8] via-[#ff5b60] to-[#ff2200] bg-clip-text text-transparent leading-tight">
-            Affordable Plans Tailored to Your Usage
-          </h2>
-          <p className="text-xs sm:text-sm text-gray-400 font-normal leading-relaxed max-w-2xl mx-auto">
-            Boiling Residential Proxies are the best in speed, reliability, and
-            security, making them perfect for sneaker sites, ticketing, social
-            media, scraping, and much more! Our high-performance proxies ensure
-            seamless access and top-tier performance across a wide range of
-            platforms.
-          </p>
-        </div>
-
-        {/* Tab Switcher Pills */}
-        <div className="flex justify-center mb-12 sm:mb-16">
-          <div className="inline-flex items-center bg-[#0d0d0d] border border-white/10 rounded-full p-1.5 shadow-inner">
-            <button
-              onClick={() => setActiveTab("residential")}
-              className={`px-5 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
-                activeTab === "residential"
-                  ? "bg-[#ff2200] text-white shadow-[0_0_15px_rgba(255,34,0,0.5)]"
-                  : "text-gray-400 hover:text-white"
-              }`}
-            >
-              Residential Proxies
-            </button>
-            <button
-              onClick={() => setActiveTab("isp")}
-              className={`px-5 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
-                activeTab === "isp"
-                  ? "bg-[#ff2200] text-white shadow-[0_0_15px_rgba(255,34,0,0.5)]"
-                  : "text-gray-400 hover:text-white"
-              }`}
-            >
-              ISP Proxies
-            </button>
-            <button
-              onClick={() => setActiveTab("datacenter")}
-              className={`px-5 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
-                activeTab === "datacenter"
-                  ? "bg-[#ff2200] text-white shadow-[0_0_15px_rgba(255,34,0,0.5)]"
-                  : "text-gray-400 hover:text-white"
-              }`}
-            >
-              Datacenter Proxies
-            </button>
+        <ScrollReveal yOffset={40} delay={0.4}>
+          <div className="text-center max-w-5xl mx-auto mb-10 sm:mb-14">
+            <h2 className="text-3xl sm:text-[32px] lg:text-5xl font-semibold tracking-tight mb-6 bg-gradient-to-r from-[#ff99a8] via-[#ff5b60] to-[#ff2200] bg-clip-text text-transparent leading-tight">
+              Affordable Plans Tailored to Your Usage
+            </h2>
+            <p className="text-xs sm:text-[16px] text-[#FFFFFF] font-normal leading-relaxed max-w-7xl mx-auto">
+              Boiling Residential Proxies are the best in speed, reliability,
+              and security, making them perfect for sneaker sites, ticketing,
+              social media, scraping, and much more! Our high-performance
+              proxies ensure seamless access and top-tier performance across a
+              wide range of platforms.
+            </p>
           </div>
-        </div>
-
-        {/* Pricing Cards Container with Arrow Controls */}
-        <div className="relative max-w-7xl mx-auto px-2 sm:px-8">
-          {/* Left Arrow Button */}
-          {activeTab === "residential" && canScrollLeft && (
-            <button
-              onClick={() => handleScroll("left")}
-              aria-label="Scroll left"
-              className="absolute left-0 sm:left-1 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-[#121212] border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-[#ff2200] hover:border-[#ff2200] transition-all duration-300 shadow-xl"
-            >
-              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
-            </button>
-          )}
-
-          {/* Right Arrow Button */}
-          {activeTab === "residential" && canScrollRight && (
-            <button
-              onClick={() => handleScroll("right")}
-              aria-label="Scroll right"
-              className="absolute right-0 sm:right-1 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-[#121212] border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-[#ff2200] hover:border-[#ff2200] transition-all duration-300 shadow-xl"
-            >
-              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
-            </button>
-          )}
-
-          {/* Horizontal Scrollable Grid Shell */}
-          <div
-            ref={scrollContainerRef}
-            onScroll={checkScrollability}
-            className={`flex overflow-x-auto scrollbar-none snap-x snap-mandatory gap-0 rounded-3xl border border-white/10 bg-[#0d0d0d] transition-all duration-500 ${
-              currentPlans.length === 1 ? "max-w-md mx-auto" : "w-full"
-            }`}
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-          >
-            {currentPlans.map((plan, index) => (
-              <div
-                key={plan.id}
-                className={`snap-start flex-none w-full sm:w-1/2 ${
-                  currentPlans.length === 1 ? "lg:w-full" : "lg:w-1/4"
-                } p-6 sm:p-8 flex flex-col justify-between ${
-                  index !== currentPlans.length - 1
-                    ? "border-b lg:border-b-0 lg:border-r border-white/10"
-                    : ""
+        </ScrollReveal>
+        <ScrollReveal yOffset={40} delay={0.5}>
+          {/* Tab Switcher Pills */}
+          <div className="flex justify-center mb-12 sm:mb-16">
+            <div className="inline-flex items-center bg-[#0d0d0d] border border-white/10 rounded-full p-1.5 shadow-inner">
+              <button
+                onClick={() => setActiveTab("residential")}
+                className={`px-5 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
+                  activeTab === "residential"
+                    ? "bg-[#ff2200] text-white shadow-[0_0_15px_rgba(255,34,0,0.5)]"
+                    : "text-gray-400 hover:text-white"
                 }`}
               >
-                <div>
-                  {/* Header Pricing */}
-                  <span className="text-[11px] uppercase tracking-wider text-gray-500 font-medium block mb-1">
-                    Starting at
-                  </span>
-                  <div className="flex items-baseline mb-6">
-                    <span className="text-3xl sm:text-4xl font-extrabold text-[#ff2200] tracking-tight">
-                      {plan.price}
-                    </span>
-                    <span className="text-xs text-gray-400 font-medium ml-1">
-                      {plan.unit}
-                    </span>
+                Residential Proxies
+              </button>
+              <button
+                onClick={() => setActiveTab("isp")}
+                className={`px-5 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
+                  activeTab === "isp"
+                    ? "bg-[#ff2200] text-white shadow-[0_0_15px_rgba(255,34,0,0.5)]"
+                    : "text-gray-400 hover:text-white"
+                }`}
+              >
+                ISP Proxies
+              </button>
+              <button
+                onClick={() => setActiveTab("datacenter")}
+                className={`px-5 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
+                  activeTab === "datacenter"
+                    ? "bg-[#ff2200] text-white shadow-[0_0_15px_rgba(255,34,0,0.5)]"
+                    : "text-gray-400 hover:text-white"
+                }`}
+              >
+                Datacenter Proxies
+              </button>
+            </div>
+          </div>
+
+          {/* Pricing Cards Container with Arrow Controls */}
+          <div className="relative max-w-7xl mx-auto px-2 sm:px-8">
+            {/* Left Arrow Button */}
+            {activeTab === "residential" && canScrollLeft && (
+              <button
+                onClick={() => handleScroll("left")}
+                aria-label="Scroll left"
+                className="absolute left-0 sm:left-1 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-[#121212] border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-[#ff2200] hover:border-[#ff2200] transition-all duration-300 shadow-xl"
+              >
+                <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+              </button>
+            )}
+
+            {/* Right Arrow Button */}
+            {activeTab === "residential" && canScrollRight && (
+              <button
+                onClick={() => handleScroll("right")}
+                aria-label="Scroll right"
+                className="absolute right-0 sm:right-1 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-12 sm:h-12 bg-[#121212] border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-[#ff2200] hover:border-[#ff2200] transition-all duration-300 shadow-xl"
+              >
+                <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+              </button>
+            )}
+
+            {/* Horizontal Scrollable Grid Shell */}
+            <div
+              ref={scrollContainerRef}
+              onScroll={checkScrollability}
+              className={`flex overflow-x-auto scrollbar-none snap-x snap-mandatory gap-0 rounded-3xl border border-white/10 bg-[#0d0d0d] transition-all duration-500 ${
+                currentPlans.length === 1 ? "max-w-md mx-auto" : "w-full"
+              }`}
+              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+            >
+              {currentPlans.map((plan, index) => {
+                const isEnterprise = plan.id === "max";
+
+                return (
+                  <div
+                    key={plan.id}
+                    className={`snap-start flex-none w-full sm:w-1/2 ${
+                      currentPlans.length === 1 ? "lg:w-full" : "lg:w-1/4"
+                    } p-6 sm:p-8 flex flex-col justify-between ${
+                      index !== currentPlans.length - 1
+                        ? "border-b lg:border-b-0 lg:border-r border-white/10"
+                        : ""
+                    }`}
+                  >
+                    <div>
+                      {isEnterprise ? (
+                        <div className="mb-6">
+                          <h3 className="text-2xl sm:text-[27px] font-regular text-[#FD0318] leading-tight tracking-tight">
+                            Boiling B2B <br /> Enterprise Plan
+                          </h3>
+                        </div>
+                      ) : (
+                        <>
+                          <span className="text-[11px] text-[#848199] font-medium block mb-1">
+                            Starting at
+                          </span>
+                          <div className="flex items-baseline mb-6">
+                            <span className="text-3xl sm:text-[36px] font-regular text-[#FD0318] tracking-tight">
+                              {plan.price}
+                            </span>
+                            <span className="text-[17px] text-[#848199] font-regular ml-1">
+                              {plan.unit}
+                            </span>
+                          </div>
+
+                          <h3 className="text-xl sm:text-[27px] font-regular text-[#FD0318] mb-4">
+                            {plan.title}
+                          </h3>
+                        </>
+                      )}
+
+                      <p className="text-xs sm:text-[15px] text-[#ffffff] leading-relaxed mb-4 font-normal">
+                        {plan.description}
+                      </p>
+
+                      {isEnterprise && plan.subDescription && (
+                        <p className="text-[12px] text-gray-500 leading-relaxed mb-6 font-normal">
+                          {plan.subDescription}
+                        </p>
+                      )}
+
+                      <ul className="space-y-3 mb-8">
+                        {plan.features.map((feature, idx) => (
+                          <li
+                            key={idx}
+                            className="flex items-center text-xs sm:text-[15px] text-[#B8B8B8]"
+                          >
+                            <Check className="w-4 h-4 text-[#ff2200] mr-2.5 flex-shrink-0" />
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="pt-2">
+                      <Link
+                        href={
+                          isEnterprise
+                            ? "https://dashboard.boilingproxies.com/login"
+                            : "https://dashboard.boilingproxies.com/login"
+                        }
+                        className="group w-full inline-flex items-center justify-center py-2.5 sm:py-3 px-6 text-xs sm:text-sm font-medium border border-white/20 rounded-full hover:border-white/50 hover:bg-white/5 transition-all duration-300"
+                      >
+                        <span className="bg-gradient-to-r from-white to-white/40 bg-clip-text text-transparent transition-all duration-300 group-hover:from-white group-hover:to-white">
+                          {isEnterprise ? "Contact" : "Purchase now"}
+                        </span>
+                      </Link>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </ScrollReveal>
+        <ScrollReveal yOffset={40} delay={0.6}>
+          {/* Payment Provider Badges Footer */}
+          <div className="mt-16 sm:mt-20 flex flex-wrap items-center justify-center gap-6 sm:gap-8 opacity-70 hover:opacity-100 transition-opacity duration-300">
+            <div className="relative h-6 sm:h-7 w-auto min-w-[32px] flex items-center justify-center">
+              <Image
+                src="/payments/ssl.png"
+                alt="SSL Secure"
+                width={40}
+                height={28}
+                className="object-contain h-full w-auto"
+              />
+            </div>
+
+            <div className="relative h-6 sm:h-7 w-auto min-w-[32px] flex items-center justify-center">
+              <Image
+                src="/payments/visa.png"
+                alt="Visa"
+                width={45}
+                height={28}
+                className="object-contain h-full w-auto"
+              />
+            </div>
+
+            <div className="relative h-6 sm:h-7 w-auto min-w-[32px] flex items-center justify-center">
+              <Image
+                src="/payments/amex.png"
+                alt="American Express"
+                width={40}
+                height={28}
+                className="object-contain h-full w-auto"
+              />
+            </div>
+
+            <div className="relative h-6 sm:h-7 w-auto min-w-[32px] flex items-center justify-center">
+              <Image
+                src="/payments/mastercard.png"
+                alt="Mastercard"
+                width={40}
+                height={28}
+                className="object-contain h-full w-auto"
+              />
+            </div>
+
+            <div className="relative h-6 sm:h-7 w-auto min-w-[32px] flex items-center justify-center">
+              <Image
+                src="/payments/stripe.png"
+                alt="Stripe"
+                width={45}
+                height={28}
+                className="object-contain h-full w-auto"
+              />
+            </div>
+
+            <div className="relative h-6 sm:h-7 w-auto min-w-[32px] flex items-center justify-center">
+              <Image
+                src="/payments/bitcoin.png"
+                alt="Bitcoin"
+                width={35}
+                height={28}
+                className="object-contain h-full w-auto"
+              />
+            </div>
+
+            <div className="relative h-6 sm:h-7 w-auto min-w-[32px] flex items-center justify-center">
+              <Image
+                src="/payments/gpay.png"
+                alt="Google Pay"
+                width={45}
+                height={28}
+                className="object-contain h-full w-auto"
+              />
+            </div>
+
+            <div className="relative h-6 sm:h-7 w-auto min-w-[32px] flex items-center justify-center">
+              <Image
+                src="/payments/applepay.png"
+                alt="Apple Pay"
+                width={45}
+                height={28}
+                className="object-contain h-full w-auto"
+              />
+            </div>
+          </div>
+        </ScrollReveal>
+      </section>
+      {/* review */}
+      <section className="relative py-20 lg:py-28 bg-[#050505] text-white overflow-hidden">
+        {/* Brighter Red Ambient Glow directly behind cards */}
+        <div
+          aria-hidden="true"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] sm:w-[1400px] h-[350px] sm:h-[450px] pointer-events-none z-0"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, rgba(255, 20, 0, 0.45) 0%, rgba(200, 10, 0, 0.2) 50%, transparent 75%)",
+            filter: "blur(90px)",
+          }}
+        />
+        <ScrollReveal yOffset={40} delay={0.4}>
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 sm:mb-16 text-center">
+            {/* Section Heading */}
+            <h2 className="text-3xl sm:text-[32px] lg:text-5xl font-semibold tracking-tight mb-4 bg-gradient-to-r from-[#ff99a8] via-[#ff5b60] to-[#ff2200] bg-clip-text text-transparent">
+              What customers say about us
+            </h2>
+            <p className="text-xs sm:text-[16px] text-[#FFFFFF] font-regular max-w-lg mx-auto">
+              We do our best to provide you the best experience ever
+            </p>
+          </div>
+        </ScrollReveal>
+        <ScrollReveal yOffset={40} delay={0.5}>
+          {/* Infinite Horizontal Auto-Scroll Track */}
+          <div className="relative z-10 w-full overflow-hidden py-4">
+            <div className="flex w-max animate-marquee space-x-4 sm:space-x-6">
+              {marqueeReviews.map((review, index) => (
+                <div
+                  key={`${review.id}-${index}`}
+                  className="flex-none w-[280px] sm:w-[320px] lg:w-[340px] bg-[#0d0d0d] border border-white/10 rounded-2xl p-6 flex flex-col justify-between hover:border-white/30 transition-all duration-300 shadow-2xl"
+                >
+                  <div>
+                    {/* Quote Icon Header (.svg) */}
+                    <div className="mb-4">
+                      <Image
+                        src="/quote-icon.svg"
+                        alt="Quote Icon"
+                        width={32}
+                        height={24}
+                        className="object-contain"
+                      />
+                    </div>
+
+                    {/* Review Title */}
+                    <h3 className="text-base sm:text-[18px] font-semibold text-white mb-4 line-clamp-2 leading-snug">
+                      {review.title}
+                    </h3>
+
+                    {/* 5-Star Badge (.svg) & Date Header */}
+                    <div className="flex items-center gap-3 mb-4">
+                      <Image
+                        src={review.starsSrc}
+                        alt="5 Stars Rating"
+                        width={96}
+                        height={18}
+                        className="object-contain"
+                      />
+                      <span className="text-[11px] text-gray-400 font-normal">
+                        {review.date}
+                      </span>
+                    </div>
+
+                    {/* Comment Body */}
+                    <p className="text-xs sm:text-sm text-gray-300 font-normal leading-relaxed mb-6 line-clamp-5">
+                      {review.comment}
+                    </p>
                   </div>
 
-                  {/* Plan Title */}
-                  <h3 className="text-xl sm:text-2xl font-bold text-[#ff2200] mb-4">
-                    {plan.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-xs sm:text-sm text-gray-400 leading-relaxed mb-6 font-normal min-h-[72px]">
-                    {plan.description}
-                  </p>
-
-                  {/* Bullet Features */}
-                  <ul className="space-y-3 mb-8">
-                    {plan.features.map((feature, idx) => (
-                      <li
-                        key={idx}
-                        className="flex items-center text-xs sm:text-sm text-gray-300"
-                      >
-                        <Check className="w-4 h-4 text-[#ff2200] mr-2.5 flex-shrink-0" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  {/* Author Footer */}
+                  <div className="pt-4 border-t border-white/10">
+                    <p className="text-xs sm:text-sm font-semibold text-gray-200">
+                      {review.author}
+                    </p>
+                  </div>
                 </div>
-
-                {/* Purchase Button */}
-                <div className="pt-2">
-                  <Link
-                    href="#purchase"
-                    className="w-full inline-flex items-center justify-center py-2.5 sm:py-3 px-6 text-xs sm:text-sm font-semibold text-white bg-transparent border border-white/20 rounded-full hover:bg-white/10 hover:border-white/40 transition-all duration-300"
-                  >
-                    Purchase now
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Payment Provider Badges Footer */}
-        <div className="mt-16 sm:mt-20 flex flex-wrap items-center justify-center gap-6 sm:gap-8 opacity-70 grayscale hover:grayscale-0 transition-all duration-300">
-          <span className="text-xs font-semibold tracking-widest text-gray-400 border border-gray-700 px-2.5 py-1 rounded">
-            SSL SECURE
-          </span>
-          <span className="text-sm font-bold tracking-wider text-white">
-            VISA
-          </span>
-          <span className="text-xs font-bold tracking-wider text-white border border-gray-600 px-1.5 py-0.5 rounded">
-            AMEX
-          </span>
-          <span className="text-sm font-bold text-gray-300">mastercard</span>
-          <span className="text-sm font-bold text-gray-300">stripe</span>
-          <span className="text-sm font-bold text-gray-300">Bitcoin</span>
-          <span className="text-sm font-bold text-gray-300">G Pay</span>
-          <span className="text-sm font-bold text-gray-300">Apple Pay</span>
-        </div>
-      </section>
-
-      {/* FAQ SECTION */}
-      <section className="py-24 max-w-4xl mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12">
-          Frequently asked <span className="text-[#ff2200]">questions</span>
-        </h2>
-        <div className="space-y-4">
-          {faqs.map((faq, i) => (
-            <div
-              key={i}
-              className="rounded-xl bg-[#0d0d0d] border border-white/10 p-4"
-            >
-              <h3 className="text-sm font-semibold text-white">
-                {faq.question}
-              </h3>
-              <p className="text-xs text-gray-400 mt-2">{faq.answer}</p>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        </ScrollReveal>
+        {/* CSS Animation for Infinite Right-to-Left Auto Scroll */}
+        <style jsx global>{`
+          @keyframes marquee {
+            0% {
+              transform: translateX(0%);
+            }
+            100% {
+              transform: translateX(-50%);
+            }
+          }
+          .animate-marquee {
+            animation: marquee 35s linear infinite;
+          }
+          .animate-marquee:hover {
+            animation-play-state: paused;
+          }
+        `}</style>
+      </section>
+      {/* FAQ SECTION */}
+      <section
+        id="faqs"
+        className="relative py-20 lg:py-32 bg-[#050505] text-white overflow-hidden"
+      >
+        {/* Red Ambient Glow at the Bottom */}
+        <div
+          aria-hidden="true"
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] sm:w-[1200px] h-[250px] sm:h-[400px] pointer-events-none z-0"
+          style={{
+            background:
+              "radial-gradient(ellipse at bottom, rgba(255, 34, 0, 0.35) 0%, rgba(200, 10, 0, 0.15) 50%, transparent 80%)",
+            filter: "blur(100px)",
+          }}
+        />
+        <ScrollReveal yOffset={40} delay={0.4}>
+          <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Section Heading Header */}
+            <div className="text-center mb-12 sm:mb-16">
+              <h2 className="text-3xl sm:text-[32px] lg:text-5xl font-semibold tracking-tight mb-4 bg-gradient-to-r from-[#ff99a8] via-[#ff5b60] to-[#ff2200] bg-clip-text text-transparent">
+                Frequently asked questions
+              </h2>
+              <p className="text-xs sm:text-[18px] text-[#FFFFFF] font-normal">
+                Everything you need to know about the product and billing.
+              </p>
+            </div>
+
+            {/* FAQ Accordion Items */}
+            <div className="divide-y divide-white/10 border-t border-b border-white/10">
+              {faqData.map((item) => {
+                const isOpen = openId === item.id;
+
+                return (
+                  <div key={item.id} className="py-5 sm:py-6 transition-colors">
+                    <button
+                      onClick={() => toggleFAQ(item.id)}
+                      className="w-full flex items-center justify-between text-left group gap-4 focus:outline-none"
+                      aria-expanded={isOpen}
+                    >
+                      <span className="text-sm sm:text-base font-medium text-gray-200 group-hover:text-white transition-colors duration-200 pr-2">
+                        {item.question}
+                      </span>
+
+                      {/* Red Toggle Plus/Minus Icon */}
+                      <span className="flex-shrink-0 text-[#ff2200] transition-transform duration-300">
+                        {isOpen ? (
+                          <Minus className="w-4 h-4 sm:w-5 sm:h-5" />
+                        ) : (
+                          <Plus className="w-4 h-4 sm:w-5 sm:h-5" />
+                        )}
+                      </span>
+                    </button>
+
+                    {/* Collapsible Answer Content */}
+                    <div
+                      className={`grid transition-all duration-300 ease-in-out ${
+                        isOpen
+                          ? "grid-rows-[1fr] opacity-100 mt-3 sm:mt-4"
+                          : "grid-rows-[0fr] opacity-0 mt-0"
+                      }`}
+                    >
+                      <div className="overflow-hidden">
+                        {item.answerPoints ? (
+                          /* 3-Point List with Red Dots */
+                          <ul className="space-y-2.5 pr-6">
+                            {item.answerPoints.map((point, index) => (
+                              <li
+                                key={index}
+                                className="flex items-start text-xs sm:text-sm text-gray-400 leading-relaxed font-normal"
+                              >
+                                <span className="text-[#ff2200] mr-2 text-base leading-none select-none">
+                                  •
+                                </span>
+                                <span>{point}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : (
+                          /* Single Paragraph Answer with Red Dot */
+                          <div className="flex items-start text-xs sm:text-sm text-gray-400 leading-relaxed font-normal pr-6">
+                            <span className="text-[#ff2200] mr-2 text-base leading-none select-none">
+                              •
+                            </span>
+                            <p>{item.answer}</p>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </ScrollReveal>
       </section>
     </div>
   );
