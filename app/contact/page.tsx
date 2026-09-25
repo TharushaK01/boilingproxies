@@ -73,7 +73,7 @@ export default function ContactSection() {
             Discord Support: For immediate assistance, open a support ticket in
             our Discord server. Join our community via this{" "}
             <Link
-              href="https://discord.gg/your-invite-link"
+              href="https://discord.com/invite/vQT8Y7ztNf"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#2b6cb0] hover:text-[#3182ce] underline transition-colors"

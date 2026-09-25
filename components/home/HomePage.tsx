@@ -471,13 +471,13 @@ export default function HomePage() {
   return (
     <div className="bg-[#050505] min-h-screen text-white font-sans relative overflow-hidden">
       {/* HERO SECTION */}
-      <section className="relative min-h-[90vh] flex items-center justify-center pt-28 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#050505]">
-        {/* 1. Deep Red Radial Glow Layer (Inline style guaranteed to render) */}
+      <section className="relative min-h-[600px] sm:min-h-[80vh] 3xl:min-h-[700px] flex items-center justify-center pt-20 sm:pt-28 pb-12 sm:pb-20 3xl:py-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-[#050505]">
+        {/* 1. Deep Red Radial Glow Layer */}
         <ScrollReveal yOffset={30}>
           <div
             aria-hidden="true"
             aria-label="Background Red Glow"
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[900px] lg:w-[1300px] h-[500px] sm:h-[500px] lg:h-[700px] pointer-events-none z-0"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] sm:w-[900px] lg:w-[1300px] h-[300px] sm:h-[500px] lg:h-[700px] pointer-events-none z-0"
             style={{
               background:
                 "radial-gradient(ellipse at center, rgba(255, 34, 0, 0.5) 0%, rgba(255, 34, 0, 0.2) 50%, rgba(255, 34, 0, 0.05) 70%, transparent 85%)",
@@ -499,13 +499,14 @@ export default function HomePage() {
           {/* 3. Hero Content Container */}
           <div className="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center">
             <ScrollReveal yOffset={40} delay={0.1}>
-              <div className="text-[10px] sm:text-16px md:text-sm font-regular text-gray-300 uppercase mb-6 sm:mb-8">
+              <div className="text-[10px] sm:text-16px md:text-sm font-regular text-gray-300 uppercase mb-4 sm:mb-8">
                 Unbanned <span className="text-gray-600 px-1 sm:px-2">|</span>{" "}
                 Fast <span className="text-gray-600 px-1 sm:px-2">|</span>{" "}
                 Efficient <span className="text-gray-600 px-1 sm:px-2">|</span>{" "}
                 All-in-One-Platform
               </div>
             </ScrollReveal>
+
             <ScrollReveal yOffset={40} delay={0.2}>
               {/* Main Headline */}
               <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[70px] font-medium tracking-tight bg-gradient-to-r from-white to-white/33 bg-clip-text text-transparent max-w-5xl leading-[1.12] sm:leading-[1.1]">
@@ -513,6 +514,7 @@ export default function HomePage() {
                 Individuals with Boiling Proxies
               </h1>
             </ScrollReveal>
+
             <ScrollReveal yOffset={40} delay={0.3}>
               {/* Secondary Subheadline */}
               <h2 className="mt-2 sm:mt-3 text-2xl sm:text-4xl md:text-[46px] lg:text-[53px] font-medium tracking-tight bg-gradient-to-r from-white to-white/33 bg-clip-text text-transparent max-w-5xl leading-[1.15] sm:leading-[1.12]">
@@ -523,14 +525,16 @@ export default function HomePage() {
                 is at their best
               </h2>
             </ScrollReveal>
+
             <ScrollReveal yOffset={40} delay={0.4}>
-              <p className="mt-6 text-xs sm:text-18px md:text-base text-[#FFFFFF] max-w-lg sm:max-w-xl font-regular leading-relaxed px-2">
+              <p className="mt-4 sm:mt-6 text-xs sm:text-18px md:text-base text-[#FFFFFF] max-w-lg sm:max-w-xl font-regular leading-relaxed px-2">
                 At Boiling Proxies, we deliver unparalleled speed, reliability,
                 and security for exceptional performance.
               </p>
             </ScrollReveal>
+
             <ScrollReveal yOffset={40} delay={0.5}>
-              <div className="mt-8 sm:mt-10">
+              <div className="mt-6 sm:mt-10">
                 <Link
                   href="https://dashboard.boilingproxies.com/login"
                   className="group inline-flex items-center justify-center px-8 sm:px-10 py-3 text-xs sm:text-sm font-medium bg-transparent border border-white/20 rounded-full hover:bg-white hover:border-white transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]"
@@ -787,7 +791,7 @@ export default function HomePage() {
 
             <div>
               <Link
-                href="#get-started"
+                href="https://dashboard.boilingproxies.com/login"
                 className="group inline-flex items-center justify-center px-8 sm:px-10 py-3 text-xs sm:text-sm font-medium bg-transparent border border-white/20 rounded-full hover:bg-white/5 hover:border-white/40 transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]"
               >
                 <span className="bg-gradient-to-r from-white to-white/40 bg-clip-text text-transparent transition-colors duration-300 group-hover:from-white group-hover:to-white">

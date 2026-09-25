@@ -100,7 +100,7 @@ export default function Navbar() {
         {/* Right: Login Button */}
         <div className="hidden md:flex items-center">
           <Link
-            href="/login"
+            href="https://dashboard.boilingproxies.com/login"
             className="px-6 py-1.5 text-sm font-medium text-white bg-transparent border border-white/20 rounded-full hover:bg-white hover:text-[#ff2200] hover:border-white transition-all duration-300 shadow-sm"
           >
             Login
