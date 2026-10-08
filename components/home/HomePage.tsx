@@ -82,15 +82,6 @@ const pricingPlans = {
       features: ["Static Residential IP", "1 Gbps speed", "24/7 Support"],
     },
   ],
-  datacenter: [
-    {
-      price: "£12.00",
-      unit: "/Mo",
-      name: "DC Starter",
-      description: "High-speed datacenter proxies.",
-      features: ["Dedicated IPs", "Unlimited bandwidth", "24/7 Support"],
-    },
-  ],
 };
 
 interface Feature {
@@ -146,6 +137,7 @@ interface Plan {
   id: string;
   price?: string;
   unit?: string;
+  vatNote?: string;
   title: string;
   description: string;
   subDescription?: string;
@@ -154,8 +146,22 @@ interface Plan {
 
 const residentialPlans: Plan[] = [
   {
+    id: "basic",
+    price: "€1.5",
+    unit: "/GB",
+    title: "Boiling Basic",
+    description:
+      "Reliable residential proxies ideal for web scraping, browsing, social media, and more. Data never expires, with reliable speeds and efficient data usage.",
+    features: [
+      "All location access",
+      "Username & password authentication",
+      "Quick setup",
+      "24/7 chat & email support",
+    ],
+  },
+  {
     id: "resi",
-    price: "€5.00",
+    price: "€2.48",
     unit: "/GB",
     title: "Boiling Resi",
     description:
@@ -169,10 +175,10 @@ const residentialPlans: Plan[] = [
     ],
   },
   {
-    id: "oxy",
-    price: "€7.00",
+    id: "geo",
+    price: "€2.48",
     unit: "/GB",
-    title: "Boiling Oxy",
+    title: "Boiling Geo",
     description:
       "High-quality residential proxies designed for sneakers, scraping, social media, and more. Fast speeds, low data usage, and data that never expires.",
     features: [
@@ -184,10 +190,10 @@ const residentialPlans: Plan[] = [
     ],
   },
   {
-    id: "smart",
-    price: "€7.00",
+    id: "royal",
+    price: "€2.48",
     unit: "/GB",
-    title: "Boiling Smart",
+    title: "Boiling Royal",
     description:
       "Smart proxy solution for sneakers, scraping, social media, and more. Never-expiring data with fast speeds and minimal data usage.",
     features: [
@@ -199,10 +205,10 @@ const residentialPlans: Plan[] = [
     ],
   },
   {
-    id: "data",
-    price: "€6.00",
+    id: "wave",
+    price: "€4.13",
     unit: "/GB",
-    title: "Boiling Data",
+    title: "Boiling Wave",
     description:
       "Optimal residential proxies for sites with Captcha/Datadome protection. Fast, low data usage, and data that never expires.",
     features: [
@@ -214,10 +220,10 @@ const residentialPlans: Plan[] = [
     ],
   },
   {
-    id: "ultra",
-    price: "€4.00",
+    id: "brain",
+    price: "€4.13",
     unit: "/GB",
-    title: "Boiling Go",
+    title: "Boiling Brain",
     description:
       "Top-tier proxies at the best price, perfect for sneakers, tickets, social media, and more. Data never expires, fast speeds, and low data usage.",
     features: [
@@ -229,12 +235,27 @@ const residentialPlans: Plan[] = [
     ],
   },
   {
-    id: "max",
-    title: "Boiling B2B Enterprise Plan",
+    id: "data",
+    price: "€4.13",
+    unit: "/GB",
+    title: "Boiling Data",
     description:
-      "Get a proxy plan designed just for you. We offer flexible options and dedicated support to match your specific needs.",
-    subDescription:
-      "Click on the 'Contact' button below to reach out to us and create a plan that fits perfectly!",
+      "Reliable residential proxies at an affordable price, perfect for web scraping, social media, browsing, and more. Data never expires, with fast speeds and efficient data usage.",
+    features: [
+      "All limited links",
+      "Own analytics platform",
+      "Chat support",
+      "Optimize hashtags",
+      "Unlimited users",
+    ],
+  },
+  {
+    id: "private",
+    price: "€4.13",
+    unit: "/GB",
+    title: "Boiling Private",
+    description:
+      "High-quality residential proxies built for everyday use, ideal for scraping, social media, browsing, and more. Data never expires, with reliable speeds and low data usage.",
     features: [
       "All limited links",
       "Own analytics platform",
@@ -248,29 +269,12 @@ const residentialPlans: Plan[] = [
 const ispPlans: Plan[] = [
   {
     id: "isp",
-    price: "€2.00",
+    price: "€1.65 - 1.99",
     unit: "/ISP",
+    vatNote: "(Vat Excluded)",
     title: "Boiling ISP's",
     description:
       "High-performance ISP proxies perfect for Nike, Demandware, Ticketmaster, Shopify, Asos, and more. Enjoy 28 days of unlimited usage with auto-renewal. EU-based for the best speed.",
-    features: [
-      "All limited links",
-      "Own analytics platform",
-      "Chat support",
-      "Optimize hashtags",
-      "Unlimited users",
-    ],
-  },
-];
-
-const datacenterPlans: Plan[] = [
-  {
-    id: "dc",
-    price: "€0.50",
-    unit: "/DC",
-    title: "Boiling DC's",
-    description:
-      "Ultra-fast datacenter proxies perfect for Nike, BSTN, Shopify, Asos, and more. Enjoy 28 days of unlimited use with auto-renewal. EU-based for optimal performance.",
     features: [
       "All limited links",
       "Own analytics platform",
@@ -407,14 +411,14 @@ const faqData: FAQItem[] = [
 export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [pricingTab, setPricingTab] = useState<
-    "residential" | "isp" | "datacenter"
+    "residential" | "isp"
   >("residential");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const duplicatedLogos = [...brandLogos, ...brandLogos];
   const imageSrc = "/dashboard-preview.svg";
 
   const [activeTab, setActiveTab] = useState<
-    "residential" | "isp" | "datacenter"
+    "residential" | "isp"
   >("residential");
 
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -452,8 +456,6 @@ export default function HomePage() {
         return residentialPlans;
       case "isp":
         return ispPlans;
-      case "datacenter":
-        return datacenterPlans;
       default:
         return residentialPlans;
     }
@@ -853,33 +855,21 @@ export default function HomePage() {
             <div className="inline-flex items-center bg-[#0d0d0d] border border-white/10 rounded-full p-1.5 shadow-inner">
               <button
                 onClick={() => setActiveTab("residential")}
-                className={`px-5 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
-                  activeTab === "residential"
-                    ? "bg-[#ff2200] text-white shadow-[0_0_15px_rgba(255,34,0,0.5)]"
-                    : "text-gray-400 hover:text-white"
-                }`}
+                className={`px-5 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${activeTab === "residential"
+                  ? "bg-[#ff2200] text-white shadow-[0_0_15px_rgba(255,34,0,0.5)]"
+                  : "text-gray-400 hover:text-white"
+                  }`}
               >
                 Residential Proxies
               </button>
               <button
                 onClick={() => setActiveTab("isp")}
-                className={`px-5 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
-                  activeTab === "isp"
-                    ? "bg-[#ff2200] text-white shadow-[0_0_15px_rgba(255,34,0,0.5)]"
-                    : "text-gray-400 hover:text-white"
-                }`}
+                className={`px-5 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${activeTab === "isp"
+                  ? "bg-[#ff2200] text-white shadow-[0_0_15px_rgba(255,34,0,0.5)]"
+                  : "text-gray-400 hover:text-white"
+                  }`}
               >
                 ISP Proxies
-              </button>
-              <button
-                onClick={() => setActiveTab("datacenter")}
-                className={`px-5 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
-                  activeTab === "datacenter"
-                    ? "bg-[#ff2200] text-white shadow-[0_0_15px_rgba(255,34,0,0.5)]"
-                    : "text-gray-400 hover:text-white"
-                }`}
-              >
-                Datacenter Proxies
               </button>
             </div>
           </div>
@@ -912,9 +902,8 @@ export default function HomePage() {
             <div
               ref={scrollContainerRef}
               onScroll={checkScrollability}
-              className={`flex overflow-x-auto scrollbar-none snap-x snap-mandatory gap-0 rounded-3xl border border-white/10 bg-[#0d0d0d] transition-all duration-500 ${
-                currentPlans.length === 1 ? "max-w-md mx-auto" : "w-full"
-              }`}
+              className={`flex overflow-x-auto scrollbar-none snap-x snap-mandatory gap-0 rounded-3xl border border-white/10 bg-[#0d0d0d] transition-all duration-500 ${currentPlans.length === 1 ? "max-w-md mx-auto" : "w-full"
+                }`}
               style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
             >
               {currentPlans.map((plan, index) => {
@@ -923,13 +912,11 @@ export default function HomePage() {
                 return (
                   <div
                     key={plan.id}
-                    className={`snap-start flex-none w-full sm:w-1/2 ${
-                      currentPlans.length === 1 ? "lg:w-full" : "lg:w-1/4"
-                    } p-6 sm:p-8 flex flex-col justify-between ${
-                      index !== currentPlans.length - 1
+                    className={`snap-start flex-none w-full sm:w-1/2 ${currentPlans.length === 1 ? "lg:w-full" : "lg:w-1/4"
+                      } p-6 sm:p-8 flex flex-col justify-between ${index !== currentPlans.length - 1
                         ? "border-b lg:border-b-0 lg:border-r border-white/10"
                         : ""
-                    }`}
+                      }`}
                   >
                     <div>
                       {isEnterprise ? (
@@ -943,13 +930,18 @@ export default function HomePage() {
                           <span className="text-[11px] text-[#848199] font-medium block mb-1">
                             Starting at
                           </span>
-                          <div className="flex items-baseline mb-6">
+                          <div className="flex items-baseline flex-wrap gap-y-1 mb-6">
                             <span className="text-3xl sm:text-[36px] font-regular text-[#FD0318] tracking-tight">
                               {plan.price}
                             </span>
                             <span className="text-[17px] text-[#848199] font-regular ml-1">
                               {plan.unit}
                             </span>
+                            {plan.vatNote && (
+                              <span className="text-sm sm:text-base font-bold text-white ml-2">
+                                {plan.vatNote}
+                              </span>
+                            )}
                           </div>
 
                           <h3 className="text-xl sm:text-[27px] font-regular text-[#FD0318] mb-4">
@@ -1001,6 +993,7 @@ export default function HomePage() {
             </div>
           </div>
         </ScrollReveal>
+        <p className="text-xs text-zinc-400 mt-4 text-center w-full">* All residential prices shown are ex. VAT</p>
         <ScrollReveal yOffset={40} delay={0.6}>
           {/* Payment Provider Badges Footer */}
           <div className="mt-16 sm:mt-20 flex flex-wrap items-center justify-center gap-6 sm:gap-8 opacity-70 hover:opacity-100 transition-opacity duration-300">
@@ -1239,11 +1232,10 @@ export default function HomePage() {
 
                     {/* Collapsible Answer Content */}
                     <div
-                      className={`grid transition-all duration-300 ease-in-out ${
-                        isOpen
-                          ? "grid-rows-[1fr] opacity-100 mt-3 sm:mt-4"
-                          : "grid-rows-[0fr] opacity-0 mt-0"
-                      }`}
+                      className={`grid transition-all duration-300 ease-in-out ${isOpen
+                        ? "grid-rows-[1fr] opacity-100 mt-3 sm:mt-4"
+                        : "grid-rows-[0fr] opacity-0 mt-0"
+                        }`}
                     >
                       <div className="overflow-hidden">
                         {item.answerPoints ? (
