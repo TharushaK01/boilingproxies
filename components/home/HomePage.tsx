@@ -151,12 +151,14 @@ const residentialPlans: Plan[] = [
     unit: "/GB",
     title: "Boiling Basic",
     description:
-      "Reliable residential proxies ideal for web scraping, browsing, social media, and more. Data never expires, with reliable speeds and efficient data usage.",
+      "",
     features: [
-      "All location access",
-      "Username & password authentication",
-      "Quick setup",
-      "24/7 chat & email support",
+      "Premium residential IPs",
+      "Rotating & sticky sessions",
+      "HTTPS, SOCKS5 & UDP support",
+      "Non-expiry data",
+      "Great for lowkey sites, account creation, raffles & more",
+      "Price shown is ex. VAT",
     ],
   },
   {
@@ -195,13 +197,13 @@ const residentialPlans: Plan[] = [
     unit: "/GB",
     title: "Boiling Royal",
     description:
-      "Smart proxy solution for sneakers, scraping, social media, and more. Never-expiring data with fast speeds and minimal data usage.",
+      "",
     features: [
-      "All limited links",
-      "Own analytics platform",
-      "Chat support",
-      "Optimize hashtags",
-      "Unlimited users",
+      "High Quality Residential IP's working on ALL sites!",
+      "Data will Never expire",
+      "Extremely Fast",
+      "Low Data usage",
+      "Price shown is ex. VAT",
     ],
   },
   {
@@ -210,7 +212,7 @@ const residentialPlans: Plan[] = [
     unit: "/GB",
     title: "Boiling Wave",
     description:
-      "Optimal residential proxies for sites with Captcha/Datadome protection. Fast, low data usage, and data that never expires.",
+      "High-quality residential proxies designed for sneakers, scraping, social media, and more. Fast speeds, low data usage, and data that never expires.",
     features: [
       "All limited links",
       "Own analytics platform",
@@ -225,7 +227,7 @@ const residentialPlans: Plan[] = [
     unit: "/GB",
     title: "Boiling Brain",
     description:
-      "Top-tier proxies at the best price, perfect for sneakers, tickets, social media, and more. Data never expires, fast speeds, and low data usage.",
+      "Top-tier proxies at the best price, perfect for sneakers, social media, and more. Data never expires, fast speeds, and low data usage.",
     features: [
       "All limited links",
       "Own analytics platform",
@@ -255,13 +257,14 @@ const residentialPlans: Plan[] = [
     unit: "/GB",
     title: "Boiling Private",
     description:
-      "High-quality residential proxies built for everyday use, ideal for scraping, social media, browsing, and more. Data never expires, with reliable speeds and low data usage.",
+      "",
     features: [
-      "All limited links",
-      "Own analytics platform",
-      "Chat support",
-      "Optimize hashtags",
-      "Unlimited users",
+      "Best Performing Residential Proxies for Tickets & Retail",
+      "Data Never Expires",
+      "Extremely Fast Speeds",
+      "Low Data Usage",
+      "Huge Pool of Unique IPs",
+      "Prices Shown Excl. VAT",
     ],
   },
 ];
