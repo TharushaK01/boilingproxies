@@ -82,6 +82,15 @@ const pricingPlans = {
       features: ["Static Residential IP", "1 Gbps speed", "24/7 Support"],
     },
   ],
+  mobile: [
+    {
+      price: "£15.00",
+      unit: "/Mo",
+      name: "ISP Starter",
+      description: "Static ISP proxies with high authority.",
+      features: ["Static Residential IP", "1 Gbps speed", "24/7 Support"],
+    },
+  ],
 };
 
 interface Feature {
@@ -287,6 +296,23 @@ const ispPlans: Plan[] = [
     ],
   },
 ];
+const mobilePlans: Plan[] = [
+  {
+    id: "mobile",
+    price: "€4.13",
+    unit: "/GB",
+    title: "Boiling Mobile",
+    description:
+      "",
+    features: [
+      "Real 4G/5G Mobile IP addresses",
+      "Fast and reliable connections",
+      "Ideal for automation and scraping",
+      "Perfect for account management",
+      "Access mobile-restricted content",
+    ],
+  },
+];
 
 interface Review {
   id: string;
@@ -414,14 +440,14 @@ const faqData: FAQItem[] = [
 export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [pricingTab, setPricingTab] = useState<
-    "residential" | "isp"
+    "residential" | "isp" | "mobile"
   >("residential");
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const duplicatedLogos = [...brandLogos, ...brandLogos];
   const imageSrc = "/dashboard-preview.svg";
 
   const [activeTab, setActiveTab] = useState<
-    "residential" | "isp"
+    "residential" | "isp" | "mobile"
   >("residential");
 
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -459,6 +485,8 @@ export default function HomePage() {
         return residentialPlans;
       case "isp":
         return ispPlans;
+      case "mobile":
+        return mobilePlans;
       default:
         return residentialPlans;
     }
@@ -874,6 +902,15 @@ export default function HomePage() {
               >
                 ISP Proxies
               </button>
+              <button
+                onClick={() => setActiveTab("mobile")}
+                className={`px-5 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${activeTab === "mobile"
+                  ? "bg-[#ff2200] text-white shadow-[0_0_15px_rgba(255,34,0,0.5)]"
+                  : "text-gray-400 hover:text-white"
+                  }`}
+              >
+                Boiling Mobile
+              </button>
             </div>
           </div>
 
@@ -996,7 +1033,11 @@ export default function HomePage() {
             </div>
           </div>
         </ScrollReveal>
-        <p className="text-xs text-zinc-400 mt-4 text-center w-full">* All residential prices shown are ex. VAT</p>
+        {activeTab === "residential" && (
+          <p className="text-xs text-zinc-400 mt-4 text-center w-full">
+            * All residential prices shown are ex. VAT
+          </p>
+        )}
         <ScrollReveal yOffset={40} delay={0.6}>
           {/* Payment Provider Badges Footer */}
           <div className="mt-16 sm:mt-20 flex flex-wrap items-center justify-center gap-6 sm:gap-8 opacity-70 hover:opacity-100 transition-opacity duration-300">
