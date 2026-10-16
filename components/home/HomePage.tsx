@@ -167,7 +167,6 @@ const residentialPlans: Plan[] = [
       "HTTPS, SOCKS5 & UDP support",
       "Non-expiry data",
       "Great for lowkey sites, account creation, raffles & more",
-      "Price shown is ex. VAT",
     ],
   },
   {
@@ -212,7 +211,6 @@ const residentialPlans: Plan[] = [
       "Data will Never expire",
       "Extremely Fast",
       "Low Data usage",
-      "Price shown is ex. VAT",
     ],
   },
   {
@@ -273,7 +271,6 @@ const residentialPlans: Plan[] = [
       "Extremely Fast Speeds",
       "Low Data Usage",
       "Huge Pool of Unique IPs",
-      "Prices Shown Excl. VAT",
     ],
   },
 ];
@@ -301,6 +298,7 @@ const mobilePlans: Plan[] = [
     id: "mobile",
     price: "€4.13",
     unit: "/GB",
+    vatNote: "(Vat Excluded)",
     title: "Boiling Mobile",
     description:
       "",
