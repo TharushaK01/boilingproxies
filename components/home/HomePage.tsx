@@ -298,6 +298,7 @@ const mobilePlans: Plan[] = [
     id: "mobile",
     price: "€4.13",
     unit: "/GB",
+    vatNote: "(Vat Excluded)",
     title: "Boiling Mobile",
     description:
       "",
